@@ -14,7 +14,6 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:screenOrientation="portrait" >
-        
         <activity 
             android:name="com.io.bitbrothers.starfish.activity.WelcomeActivity">
             <intent-filter >

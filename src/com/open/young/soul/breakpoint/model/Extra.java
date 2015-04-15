@@ -1,9 +1,9 @@
-package com.io.bitbrothers.starfish.model;
+package com.open.young.soul.breakpoint.model;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
- * ·şÎñÆ÷ÏìÓ¦±¨ÎÄÖĞ¿ÉÄÜ´æÔÚµÄextraÊı¾İ£¬ÓÃÓÚÊµÏÖ×Ô¶¯µÇÂ¼¸üĞÂ±¾µØ¼øÈ¨ĞÅÏ¢
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¿ï¿½ï¿½Ü´ï¿½ï¿½Úµï¿½extraï¿½ï¿½İ£ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Â±ï¿½ï¿½Ø¼ï¿½È¨ï¿½ï¿½Ï¢
  * @author Young
  *
  */

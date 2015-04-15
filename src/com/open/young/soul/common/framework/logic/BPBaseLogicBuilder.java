@@ -1,4 +1,4 @@
-package com.io.bitbrothers.common.framework.logic;
+package com.open.young.soul.common.framework.logic;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -14,7 +14,7 @@ import android.util.Log;
  * @author Young
  * 
  */
-public class BaseLogicBuilder implements ILogicBuiider
+public class BPBaseLogicBuilder implements BPILogicBuiider
 {
     /**
      * 日志标签
@@ -24,30 +24,30 @@ public class BaseLogicBuilder implements ILogicBuiider
     /**
      * 单例
      */
-    private static BaseLogicBuilder sInstance;
+    private static BPBaseLogicBuilder sInstance;
 
     /**
      * map容器，保存logic类实例
      */
-    private Map<String, ILogic> mLogicCache = new HashMap<String, ILogic>();
+    private Map<String, BPILogic> mLogicCache = new HashMap<String, BPILogic>();
 
     /**
      * 自身持有的handler，目前没有在此对消息接受进行处理
      */
     private Handler myHandler = new MyHandler();
 
-    private BaseLogicBuilder()
+    private BPBaseLogicBuilder()
     {
 
     }
 
     /**
      * 需要将上层业务需要的所有logic类注册进来
-     * {@link BaseLogicBuilder#registerLogic(Class, ILogic)}
+     * {@link BPBaseLogicBuilder#registerLogic(Class, BPILogic)}
      * 
      * @param array 所以logic组成的数组，进行注册
      */
-    public static void init(ILogic[] array)
+    public static void init(BPILogic[] array)
     {
         if (null == array)
         {
@@ -59,8 +59,8 @@ public class BaseLogicBuilder implements ILogicBuiider
             Log.w(TAG, "BaseLogicBuilder has inited");
             return;
         }
-        sInstance = new BaseLogicBuilder();
-        for (ILogic logic : array)
+        sInstance = new BPBaseLogicBuilder();
+        for (BPILogic logic : array)
         {
             try
             {
@@ -84,15 +84,15 @@ public class BaseLogicBuilder implements ILogicBuiider
      */
     protected void initAllLogics()
     {
-        Iterator<Entry<String, ILogic>> iterator = mLogicCache.entrySet()
+        Iterator<Entry<String, BPILogic>> iterator = mLogicCache.entrySet()
                 .iterator();
         while (iterator.hasNext())
         {
-            ((ILogic) iterator.next().getValue()).addHandler(myHandler);
+            ((BPILogic) iterator.next().getValue()).addHandler(myHandler);
         }
     }
 
-    public static BaseLogicBuilder getInstance()
+    public static BPBaseLogicBuilder getInstance()
     {
         if (null == sInstance)
         {
@@ -118,7 +118,7 @@ public class BaseLogicBuilder implements ILogicBuiider
      * @param paramClass class参数
      * @param logic 实例对象
      */
-    public void registerLogic(Class<?> paramClass, ILogic logic)
+    public void registerLogic(Class<?> paramClass, BPILogic logic)
     {
         if (!mLogicCache.containsKey(paramClass.getSimpleName()))
         {
@@ -136,28 +136,28 @@ public class BaseLogicBuilder implements ILogicBuiider
     @Override
     public void addHandlerToAllLogics(Handler handler)
     {
-        Iterator<Entry<String, ILogic>> iterator = mLogicCache.entrySet()
+        Iterator<Entry<String, BPILogic>> iterator = mLogicCache.entrySet()
                 .iterator();
         while (iterator.hasNext())
         {
-            ((ILogic) iterator.next().getValue()).addHandler(handler);
+            ((BPILogic) iterator.next().getValue()).addHandler(handler);
         }
     }
 
     @Override
     public void removeHandlerFromAllLogics(Handler handler)
     {
-        Iterator<Entry<String, ILogic>> iterator = mLogicCache.entrySet()
+        Iterator<Entry<String, BPILogic>> iterator = mLogicCache.entrySet()
                 .iterator();
         while (iterator.hasNext())
         {
-            ((ILogic) iterator.next().getValue()).removeHandler(handler);
+            ((BPILogic) iterator.next().getValue()).removeHandler(handler);
         }
 
     }
 
     @Override
-    public ILogic getLogicByClass(Class<?> paramClass)
+    public BPILogic getLogicByClass(Class<?> paramClass)
     {
         return mLogicCache.get(paramClass.getSimpleName());
     }

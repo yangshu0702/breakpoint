@@ -1,12 +1,12 @@
-package com.io.bitbrothers.starfish.application;
+package com.open.young.soul.breakpoint.application;
 
-import io.bitbrothers.starfish.R;
+import com.open.young.soul.R;
+import com.open.young.soul.common.util.BPLogger;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.io.bitbrothers.common.util.Logger;
 
 import android.content.Context;
 import android.util.Log;

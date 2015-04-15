@@ -1,12 +1,12 @@
-package com.io.bitbrothers.common.framework.logic;
+package com.open.young.soul.common.framework.logic;
 
 import android.os.Handler;
 
-public interface ILogicBuiider
+public interface BPILogicBuiider
 {
     void addHandlerToAllLogics(Handler handler);
     
     void removeHandlerFromAllLogics(Handler handler);
     
-    ILogic getLogicByClass(Class<?> paramClass);
+    BPILogic getLogicByClass(Class<?> paramClass);
 }

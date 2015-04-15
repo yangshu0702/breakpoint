@@ -1,10 +1,11 @@
-package com.io.bitbrothers.starfish.activity;
+package com.open.young.soul.breakpoint.activity;
 
-import io.bitbrothers.starfish.R;
+import com.open.young.soul.R;
+import com.open.young.soul.common.framework.ui.BaseGroupActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 
-import com.io.bitbrothers.common.framework.ui.BaseGroupActivity;
 
 /**
  * 欢迎页

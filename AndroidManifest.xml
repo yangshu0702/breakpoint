@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.bitbrothers.starfish"
+    package="com.open.young.soul"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -8,14 +8,14 @@
         android:targetSdkVersion="19" />
 
     <application
-        android:name="com.io.bitbrothers.starfish.application.StarfishApplication"
+        android:name="com.open.young.soul.breakpoint.application.StarfishApplication"
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:screenOrientation="portrait" >
         <activity 
-            android:name="com.io.bitbrothers.starfish.activity.WelcomeActivity">
+            android:name="com.open.young.soul.breakpoint.activity.WelcomeActivity">
             <intent-filter >
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

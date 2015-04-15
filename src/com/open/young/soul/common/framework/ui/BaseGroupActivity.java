@@ -1,4 +1,4 @@
-package com.io.bitbrothers.common.framework.ui;
+package com.open.young.soul.common.framework.ui;
 
 import android.app.Activity;
 import android.app.ActivityGroup;
@@ -7,8 +7,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.io.bitbrothers.common.framework.logic.BaseLogicBuilder;
-import com.io.bitbrothers.common.framework.logic.ILogic;
+import com.open.young.soul.common.framework.logic.BPBaseLogicBuilder;
+import com.open.young.soul.common.framework.logic.BPILogic;
 
 /**
  * activity的基类，继承自{@link ActivityGroup}. 考虑到后续有可能能使用到{@link ActivityGroup}
@@ -36,25 +36,25 @@ public abstract class BaseGroupActivity extends ActivityGroup
         setContentView(getLayoutId());
         Log.i(TAG, "onCreate()");
         // 如果BaseLogicBuilder没有初始化完成，则无法进行其他工作，故抛出提示
-        if (!BaseLogicBuilder.isInited())
+        if (!BPBaseLogicBuilder.isInited())
         {
             throw new RuntimeException(
                     "activity onCreate must be after BaseLogicBuilder inited");
         }
-        BaseLogicBuilder.getInstance().removeHandlerFromAllLogics(mHandler);
+        BPBaseLogicBuilder.getInstance().removeHandlerFromAllLogics(mHandler);
 
     }
 
     /**
-     * 通过调用{@link BaseLogicBuilder#getLogicByClass(Class)} 获取logic实例 供activity持有
-     * {@link ILogic} 使用，通常在{@link BaseGroupActivity#initLogics()}方法中获取实例
+     * 通过调用{@link BPBaseLogicBuilder#getLogicByClass(Class)} 获取logic实例 供activity持有
+     * {@link BPILogic} 使用，通常在{@link BaseGroupActivity#initLogics()}方法中获取实例
      * 
      * @param paramClass logic的类
-     * @return {@link ILogic} 实例
+     * @return {@link BPILogic} 实例
      */
-    protected ILogic getLogicByInterfaceClass(Class<?> paramClass)
+    protected BPILogic getLogicByInterfaceClass(Class<?> paramClass)
     {
-        return BaseLogicBuilder.getInstance().getLogicByClass(paramClass);
+        return BPBaseLogicBuilder.getInstance().getLogicByClass(paramClass);
     }
 
     /**
@@ -78,13 +78,13 @@ public abstract class BaseGroupActivity extends ActivityGroup
     }
 
     /**
-     * 为了解耦，故UI层不应该直接通过{@link BaseLogicBuilder}获取实例
+     * 为了解耦，故UI层不应该直接通过{@link BPBaseLogicBuilder}获取实例
      * 
-     * @return {@link BaseLogicBuilder}实例
+     * @return {@link BPBaseLogicBuilder}实例
      */
-    protected BaseLogicBuilder getLogicBuilder()
+    protected BPBaseLogicBuilder getLogicBuilder()
     {
-        return BaseLogicBuilder.getInstance();
+        return BPBaseLogicBuilder.getInstance();
     }
 
     /**
@@ -98,18 +98,18 @@ public abstract class BaseGroupActivity extends ActivityGroup
     }
 
     /**
-     * 将{@link BaseGroupActivity#mHandler}从{@link BaseLogicBuilder}中移除
+     * 将{@link BaseGroupActivity#mHandler}从{@link BPBaseLogicBuilder}中移除
      */
     private void removeHandler()
     {
-        if (null != BaseLogicBuilder.getInstance())
+        if (null != BPBaseLogicBuilder.getInstance())
         {
-            BaseLogicBuilder.getInstance().removeHandlerFromAllLogics(mHandler);
+            BPBaseLogicBuilder.getInstance().removeHandlerFromAllLogics(mHandler);
         }
     }
 
     /**
-     * 子类复写此方法，用于获取{@link ILogic} 实例
+     * 子类复写此方法，用于获取{@link BPILogic} 实例
      */
     protected abstract void initLogics();
     

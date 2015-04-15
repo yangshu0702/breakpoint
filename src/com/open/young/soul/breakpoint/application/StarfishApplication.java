@@ -1,10 +1,10 @@
-package com.io.bitbrothers.starfish.application;
+package com.open.young.soul.breakpoint.application;
 
 import java.util.ArrayList;
 
-import com.io.bitbrothers.common.framework.logic.BaseLogicBuilder;
-import com.io.bitbrothers.common.framework.logic.ILogic;
-import com.io.bitbrothers.common.util.Logger;
+import com.open.young.soul.common.framework.logic.BPBaseLogicBuilder;
+import com.open.young.soul.common.framework.logic.BPILogic;
+import com.open.young.soul.common.util.BPLogger;
 
 import android.app.Application;
 import android.os.Environment;
@@ -49,10 +49,10 @@ public class StarfishApplication extends Application
         super.onCreate();
         sInstance = this;
         CommonContext.init(this);
-        Logger.init(CommonContext.mIsLogToSD, CommonContext.mIsLogToDDMS,
+        BPLogger.init(CommonContext.mIsLogToSD, CommonContext.mIsLogToDDMS,
                 Environment.getExternalStorageDirectory()
                         + CommonContext.mLogPath, Log.VERBOSE);
-        BaseLogicBuilder.init(new ILogic[0]);
+        BPBaseLogicBuilder.init(new BPILogic[0]);
         Log.d(TAG, "onCreate");
 
     }

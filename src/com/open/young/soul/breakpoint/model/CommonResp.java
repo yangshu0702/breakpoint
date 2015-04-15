@@ -1,28 +1,28 @@
-package com.io.bitbrothers.starfish.model;
+package com.open.young.soul.breakpoint.model;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
- * ·þÎñÆ÷·µ»ØµÄ¸¸Àà£¬°üº¬±ØÒªÐÅÏ¢
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ØµÄ¸ï¿½ï¿½à£¬ï¿½ï¿½ï¿½Òªï¿½ï¿½Ï¢
  * @author Young
  *
  */
 public class CommonResp
 {
     /**
-     * ´íÎóÂë
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     @SerializedName("errcode")
     private int errcode;
     
     /**
-     * ´íÎóÐÅÏ¢
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
      */
     @SerializedName("errmsg")
     private String errmsg;
     
     /**
-     * ¿ÉÄÜ´æÔÚµÄ×Ô¶¯µÇÂ¼Êý¾Ý£¬Ö»ÓÐ·þÎñÆ÷Íê³É×Ô¶¯µÇÂ¼²Å·µ»Ø
+     * ï¿½ï¿½ï¿½Ü´ï¿½ï¿½Úµï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ý£ï¿½Ö»ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Â¼ï¿½Å·ï¿½ï¿½ï¿½
      */
     @SerializedName("extra")
     private Extra extra;

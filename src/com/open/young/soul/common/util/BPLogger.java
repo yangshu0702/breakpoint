@@ -1,4 +1,5 @@
-package com.io.bitbrothers.common.util;
+﻿package com.open.young.soul.common.util;
+
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import android.util.Log;
  * @author Young
  *
  */
-public class Logger
+public class BPLogger
 {
     /**
      * 是否在SD卡中打印日志，默认不打印
@@ -53,10 +54,10 @@ public class Logger
         {
             return;
         }
-        Logger.isSDLog = isSDLog;
-        Logger.isDDMSLog = isDDMSLog;
-        Logger.logDirPath = logDirPath;
-        Logger.level = level;
+        BPLogger.isSDLog = isSDLog;
+        BPLogger.isDDMSLog = isDDMSLog;
+        BPLogger.logDirPath = logDirPath;
+        BPLogger.level = level;
         File file = new File(logDirPath);
         if (!file.exists())
         {
@@ -64,10 +65,10 @@ public class Logger
         }
         //保留最近5个日志，否则太占用SD卡
         File[] array = file.listFiles();        
-        ArrayList<File> deleteList = new ArrayList<>();
+        ArrayList<File> deleteList = new ArrayList<File>();
         if (null != array && array.length >= 5)
         {
-            ArrayList<File> list = new ArrayList<>();
+            ArrayList<File> list = new ArrayList<File>();
             for (File temp : array)
             {
                 list.add(temp);
@@ -201,7 +202,7 @@ public class Logger
     {
         if (isSDLog)
         {            
-            Log2File.getInstance().write(logDirPath + fileName, levelString(level), tag, msg);
+        	BPLog2File.getInstance().write(logDirPath + fileName, levelString(level), tag, msg);
         }
     }
     

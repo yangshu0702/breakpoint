@@ -1,9 +1,9 @@
-package com.io.bitbrothers.common.framework.logic;
+package com.open.young.soul.common.framework.logic;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.io.bitbrothers.common.util.Logger;
+import com.open.young.soul.common.util.BPLogger;
 
 import android.os.Handler;
 import android.os.Message;
@@ -13,9 +13,9 @@ import android.os.Message;
  * @author Young
  *
  */
-public class BaseLogic implements ILogic
+public class BPBaseLogic implements BPILogic
 {
-    private static final String TAG = BaseLogic.class.getSimpleName();
+    private static final String TAG = BPBaseLogic.class.getSimpleName();
     
     private Handler myHandler = new MyHandler();
     
@@ -30,7 +30,7 @@ public class BaseLogic implements ILogic
         }
         else
         {
-            Logger.w(TAG, "addHandler and handler is null");
+            BPLogger.w(TAG, "addHandler and handler is null");
         }
     }
 
@@ -43,7 +43,7 @@ public class BaseLogic implements ILogic
         }
         else
         {
-            Logger.w(TAG, "removeHandler and handler is null");
+            BPLogger.w(TAG, "removeHandler and handler is null");
         }
 
     }
@@ -81,7 +81,7 @@ public class BaseLogic implements ILogic
     }
     
     /**
-     * 内部类，用于分发{@link BaseLogic#myHandler}}的消息
+     * 内部类，用于分发{@link BPBaseLogic#myHandler}}的消息
      * 因为消息可能需要延迟或者处理runnable，所以需要此Handler来处理
      * @author Young
      *

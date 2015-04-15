@@ -1,4 +1,4 @@
-package com.io.bitbrothers.common.util;
+package com.open.young.soul.common.util;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 import android.os.Process;
 import android.util.Log;
 
-public class Log2File
+public class BPLog2File
 {
     private static final String TAG = "Log2File";
     
@@ -20,18 +20,18 @@ public class Log2File
     
     private static ExecutorService executor;
     
-    private static Log2File instance;
+    private static BPLog2File instance;
     
-    private Log2File()
+    private BPLog2File()
     {
         
     }
     
-    public static Log2File getInstance()
+    public static BPLog2File getInstance()
     {
         if (null == instance)
         {
-            instance = new Log2File();
+            instance = new BPLog2File();
         }
         return instance;
     }

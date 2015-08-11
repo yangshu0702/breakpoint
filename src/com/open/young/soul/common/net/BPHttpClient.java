@@ -77,10 +77,10 @@ public class BPHttpClient {
 		if (null == sBpHttpClient) {
 			sBpHttpClient = new BPHttpClient();
 		}
-		init(DEFAULT_CONNTCT_POOL_TIMEOUT, DEFAULT_HTTP_CONNTCT_TIMEOUT, DEFAULT_SOCKET_TIMEOUT);
+		init(DEFAULT_CONNTCT_POOL_TIMEOUT, DEFAULT_HTTP_CONNTCT_TIMEOUT,
+				DEFAULT_SOCKET_TIMEOUT);
 		return sBpHttpClient;
 	}
-	
 
 	/**
 	 * 对于超时时间的初始化，方便进行动态配置
@@ -108,8 +108,8 @@ public class BPHttpClient {
 		ConnManagerParams.setTimeout(httpParams, httpPoolConnTime);
 		HttpConnectionParams.setConnectionTimeout(httpParams, httpConnTime);
 		HttpConnectionParams.setSoTimeout(httpParams, socketConnTime);
-		
-		//设置tcp_nodelay为true，是因为，单个请求一般速率很快，希望保证实时性，如果设置为false，虽然提高了信道带宽的利用率，但是在这样的场景下不必要，下载功能中应该考虑设置为false
+
+		// 设置tcp_nodelay为true，是因为，单个请求一般速率很快，希望保证实时性，如果设置为false，虽然提高了信道带宽的利用率，但是在这样的场景下不必要，下载功能中应该考虑设置为false
 		HttpConnectionParams.setTcpNoDelay(httpParams, true);
 
 		HttpProtocolParams.setVersion(httpParams, HttpVersion.HTTP_1_1);
@@ -131,13 +131,13 @@ public class BPHttpClient {
 
 	public void get(String url, List<BasicNameValuePair> params,
 			BPHttpCallback callback) {
-		get(url, params,null, callback);
+		get(url, params, null, callback);
 	}
 
 	public void get(final String url, final List<BasicNameValuePair> params,
 			final List<Header> headerList, final BPHttpCallback callback) {
 		new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 
@@ -155,40 +155,50 @@ public class BPHttpClient {
 				final HttpGet httpGet = new HttpGet(requestUrl);
 				if (null != headerList) {
 					for (Header header : headerList) {
-						Log.i(TAG, "get header " + header.getName() +  " = " + header.getValue());
+						Log.i(TAG, "get header " + header.getName() + " = "
+								+ header.getValue());
 						httpGet.addHeader(header);
 					}
 				}
 				try {
 					mRequestList.add(httpGet);
-					mHttpClient.execute(httpGet, new ResponseHandler<HttpResponse>() {
+					mHttpClient.execute(httpGet,
+							new ResponseHandler<HttpResponse>() {
 
-						@Override
-						public HttpResponse handleResponse(HttpResponse httpResponse)
-								throws ClientProtocolException, IOException {
-							mRequestList.remove(httpGet);
-							int reponseCode = httpResponse.getStatusLine()
-									.getStatusCode();
-							switch (reponseCode) {
-							case HttpStatus.SC_OK:
-								String response = new String(EntityUtils
-										.toByteArray(httpResponse.getEntity()), Charset
-										.forName(HTTP.UTF_8));
-								callback.onResponse(response);
-								break;
-							default:
-								callback.onError(reponseCode);
-								break;
-							}
-							return httpResponse;
-						}
-					});
+								@Override
+								public HttpResponse handleResponse(
+										HttpResponse httpResponse)
+										throws ClientProtocolException,
+										IOException {
+									mRequestList.remove(httpGet);
+									int reponseCode = httpResponse
+											.getStatusLine().getStatusCode();
+									switch (reponseCode) {
+									case HttpStatus.SC_OK:
+										String response = new String(
+												EntityUtils
+														.toByteArray(httpResponse
+																.getEntity()),
+												Charset.forName(HTTP.UTF_8));
+										callback.onResponse(response);
+										break;
+									default:
+										callback.onError(reponseCode);
+										break;
+									}
+									return httpResponse;
+								}
+							});
 				} catch (ClientProtocolException e) {
 					mRequestList.remove(httpGet);
-					Log.e(TAG, "request " + url + "happens error e = " + e.toString());
+					Log.e(TAG,
+							"request " + url + "happens error e = "
+									+ e.toString());
 				} catch (IOException e) {
 					mRequestList.remove(httpGet);
-					Log.e(TAG, "request " + url + "happens error e = " + e.toString());
+					Log.e(TAG,
+							"request " + url + "happens error e = "
+									+ e.toString());
 				}
 			}
 		}).start();
